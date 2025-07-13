@@ -158,7 +158,7 @@ public class HealthThreadClass implements Runnable {
             Statement st1 = connection5.createStatement();
             //   ResultSet r1 = st1.executeQuery("select IP_ADDRESS,BRANCH_NAME,SSA,ZONE_NAME,CUSTOMER,DISTRICT,DEPARTMENT,STATE_UT,COMMUNITY,SNMP_VERSION,USER_NAME,AUTH_NAME,AUTH_PASSWORD,PRIVACY_NAME,PRIVACY_PASSWORD,PORT_NUMBER,ROUTER_TYPE,HEALTH_HISTORY_PARAM,CPU_THRESHOLD,MEMORY_THRESHOLD from ADD_INTERFACE where HEALTH_PARAM='Yes' order by sr_no ASC");
             // ResultSet r21 = st1.executeQuery("select IP_ADDRESS,BRANCH_NAME,SSA,ZONE_NAME,CUSTOMER,DISTRICT,DEPARTMENT,STATE_UT,COMMUNITY,SNMP_VERSION,USER_NAME,AUTH_NAME,AUTH_PASSWORD,PRIVACY_NAME,PRIVACY_PASSWORD,PORT_NUMBER,ROUTER_TYPE,HEALTH_HISTORY_PARAM,CPU_THRESHOLD,MEMORY_THRESHOLD from ADD_INTERFACE where HEALTH_PARAM='Yes' order by sr_no ASC");
-            ResultSet r1 = st1.executeQuery("select node.DEVICE_IP,node.DEVICE_TYPE,parm.CPU_THRESHOLD,parm.MEMORY_THRESHOLD,health.CPU_STATUS ,health.MEMORY_STATUS FROM ADD_NODE node JOIN NODE_PARAMETER parm ON node.DEVICE_IP=parm.DEVICE_IP  JOIN node_health_monitoring health ON health.NODE_IP=parm.DEVICE_IP    WHERE parm.CPU_HISTORY='Yes' ORDER BY node.ID ");
+            ResultSet r1 = st1.executeQuery("select node.DEVICE_IP,node.DEVICE_TYPE,parm.CPU_THRESHOLD,parm.MEMORY_THRESHOLD,health.CPU_STATUS ,health.MEMORY_STATUS, node.DEVICE_NAME FROM ADD_NODE node JOIN NODE_PARAMETER parm ON node.DEVICE_IP=parm.DEVICE_IP  JOIN node_health_monitoring health ON health.NODE_IP=parm.DEVICE_IP    WHERE node.DEVICE_IP='172.30.0.26' and parm.CPU_HISTORY='Yes' ORDER BY node.ID ");
 
             //   String router_ipadress = "";
             // String router_branchname = "";
@@ -167,6 +167,7 @@ public class HealthThreadClass implements Runnable {
                 String device_type = r1.getString(2);
                 String cpu_threshold = r1.getString(3);
                 String memory_threshol = r1.getString(4);
+                String device_name = r1.getString(7);
 
                 String cpu_status = r1.getString(5);
                 String memory_status = r1.getString(6);
@@ -182,6 +183,7 @@ public class HealthThreadClass implements Runnable {
                 model.setCPU_THRESHOLD(cpu_threshold);
                 model.setMEMORY_THRESHOLD(memory_threshol);
                 model.setDEVICE_TYPE(device_type);
+                model.setDEVICE_NAME(device_name);
                 
 
                 NodeHealthMon.healthMonData.put(device_ip, model);

@@ -15,6 +15,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @author velox
  */
 public class NodeHealthMon {
+    
+      public static boolean isSimulation=true;
 
     public static ConcurrentHashMap<String, List<String>> snmpOID_hashmap = null;
     public static CopyOnWriteArrayList tipsize = null;

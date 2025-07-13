@@ -20,9 +20,9 @@ public class Datasource55 {
          //      Connection con = null;
 
         // JDBC URL for MySQL 8
-        String jdbcURL = "jdbc:mysql://localhost:3306/bescom?useSSL=false";
+        String jdbcURL = "jdbc:mysql://localhost:9007/bescom?useSSL=false";
         String username = "root";
-        String password = "root";
+        String password = "Syst3m4$";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Establish the connection

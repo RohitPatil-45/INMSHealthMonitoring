@@ -13,7 +13,8 @@ public class HealthModel {
     private static final long serialVersionUID = -2264642949863409860L;
 
     private String DEVICE_IP;
-     private String DEVICE_TYPE;
+    private String DEVICE_NAME;
+    private String DEVICE_TYPE;
     private String CPU_THRESHOLD;
     private String MEMORY_THRESHOLD;
     private String CPU_STATUS;
@@ -28,8 +29,6 @@ public class HealthModel {
     public void setDEVICE_TYPE(String DEVICE_TYPE) {
         this.DEVICE_TYPE = DEVICE_TYPE;
     }
-    
-    
 
     public String getDEVICE_IP() {
         return DEVICE_IP;
@@ -87,8 +86,14 @@ public class HealthModel {
         this.MEMORY_HISTORY = MEMORY_HISTORY;
     }
 
+    public String getDEVICE_NAME() {
+        return DEVICE_NAME;
+    }
+
+    public void setDEVICE_NAME(String DEVICE_NAME) {
+        this.DEVICE_NAME = DEVICE_NAME;
+    }
     
     
-    
-    
+
 }
