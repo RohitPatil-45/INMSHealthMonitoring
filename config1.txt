@@ -1,0 +1,5 @@
+IPADDRESS=localhost
+DB_PORT=3306
+USERNAME=root
+PASSWORD=root
+SCHEMA=npm

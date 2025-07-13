@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROUTERMEMORY>
+    <SERIAL_NO id="2">
+        <ROUTER_TYPE>Cisco</ROUTER_TYPE>
+        <PROCESSOR_USE>1.3.6.1.4.1.9.9.48.1.1.1.5.1</PROCESSOR_USE>
+        <PROCESSOR_FREE>1.3.6.1.4.1.9.9.48.1.1.1.6.1</PROCESSOR_FREE>
+        <PROCESSOR_TOTAL>1.3.6.1.4.1.9.9.48.1.1.1.5.2</PROCESSOR_TOTAL>
+        <percentage>1.3.6.1.4.1.9.9.48.1.1.1.6.2</percentage>
+
+ <CPU_UTILIZATION>1.3.6.1.4.1.9.9.109.1.1.1.1.4.1</CPU_UTILIZATION>
+        <TEMP>1.3.6.1.4.1.9.9.13.1.3.1.3.2</TEMP>
+
+    </SERIAL_NO>
+	
+	 <SERIAL_NO id="3">
+        <ROUTER_TYPE>NX</ROUTER_TYPE>
+        <PROCESSOR_USE>1.3.6.1.4.1.9.9.109.1.1.1.1.12.1</PROCESSOR_USE>
+        <PROCESSOR_FREE>1.3.6.1.4.1.9.9.109.1.1.1.1.13.1</PROCESSOR_FREE>
+        <PROCESSOR_TOTAL>1.3.6.1.4.1.9.9.48.1.1.1.5.2</PROCESSOR_TOTAL>
+        <percentage>1.3.6.1.4.1.9.9.48.1.1.1.6.2</percentage>
+
+ <CPU_UTILIZATION>1.3.6.1.4.1.9.9.109.1.1.1.1.6.1</CPU_UTILIZATION>
+        <TEMP>1.3.6.1.4.1.9.9.13.1.3.1.3.2</TEMP>
+
+    </SERIAL_NO>
+    
+    
+     <SERIAL_NO id="3">
+        <ROUTER_TYPE>FortiGate</ROUTER_TYPE>
+        <PROCESSOR_USE>1.3.6.1.4.1.9.9.109.1.1.1.1.12.1</PROCESSOR_USE>
+        <PROCESSOR_FREE>1.3.6.1.4.1.9.9.109.1.1.1.1.13.1</PROCESSOR_FREE>
+        <PROCESSOR_TOTAL>1.3.6.1.4.1.12356.101.4.1.5.0</PROCESSOR_TOTAL>
+        <percentage>1.3.6.1.4.1.12356.101.4.1.4.0</percentage>
+      <CPU_UTILIZATION>1.3.6.1.4.1.8741.1.3.1.3.0</CPU_UTILIZATION>
+        <TEMP>1.3.6.1.4.1.9.9.13.1.3.1.3.2</TEMP>
+
+    </SERIAL_NO>
+    </ROUTERMEMORY>
