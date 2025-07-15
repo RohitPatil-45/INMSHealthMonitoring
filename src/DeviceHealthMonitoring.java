@@ -37,7 +37,7 @@ public class DeviceHealthMonitoring implements Runnable {
 
         while (true) {
             try {
-                Thread.sleep(30000);
+                Thread.sleep(10000);
             } catch (Exception e) {
                 System.err.println("Exceptionn: " + e.getMessage());
             }
@@ -591,6 +591,7 @@ public class DeviceHealthMonitoring implements Runnable {
         System.out.println("Inside CPUThresholdAlert");
         Connection cpu_con = null;
         PreparedStatement preparedStatement2 = null;
+        Timestamp logtime = new Timestamp(new java.util.Date().getTime());
         try {
             cpu_con = Datasource55.getConnection();
             preparedStatement2 = cpu_con.prepareStatement("INSERT INTO cpu_threshold_history(NODE_IP,CPU_STATUS,CPU_THRESHOLD,CPU_UTILIZATION,EVENT_TIMESTAMP) VALUES (?,?,?,?,?)");
@@ -598,7 +599,7 @@ public class DeviceHealthMonitoring implements Runnable {
             preparedStatement2.setString(2, cpu_status);
             preparedStatement2.setString(3, cpu_percentage);
             preparedStatement2.setString(4, cpu_val);
-            preparedStatement2.setTimestamp(5, new Timestamp(new java.util.Date().getTime()));
+            preparedStatement2.setTimestamp(5, logtime);
             preparedStatement2.executeUpdate();
 
         } catch (Exception e) {
@@ -622,10 +623,13 @@ public class DeviceHealthMonitoring implements Runnable {
         PreparedStatement preparedStmt_cpualert = null;
         try {
             cpuAlert_con = Datasource55.getConnection();
-            preparedStmt_cpualert = cpuAlert_con.prepareStatement("UPDATE node_health_monitoring SET CPU_UTILIZATION=?,CPU_STATUS=? WHERE  NODE_IP=? ");
+            preparedStmt_cpualert = cpuAlert_con.prepareStatement("UPDATE node_health_monitoring SET CPU_UTILIZATION=?,CPU_STATUS=?,CPU_UTILIZATION_Generated_Time=?,"
+                    + "CPU_UTILIZATION_Cleared_Time=? WHERE NODE_IP=? ");
             preparedStmt_cpualert.setString(1, cpu_val);
             preparedStmt_cpualert.setString(2, cpu_status);
-            preparedStmt_cpualert.setString(3, device_ip);
+            preparedStmt_cpualert.setTimestamp(3, cpu_status.equalsIgnoreCase("High") ? logtime : null);
+            preparedStmt_cpualert.setTimestamp(4, cpu_status.equalsIgnoreCase("Low") ? logtime : null);
+            preparedStmt_cpualert.setString(5, device_ip);
             preparedStmt_cpualert.executeUpdate();
         } catch (Exception e) {
             System.out.println("errorrrrrrrrrrrrrrrrrrrrrrrrrrrrr@@@@@@@@@" + e);
@@ -649,6 +653,7 @@ public class DeviceHealthMonitoring implements Runnable {
         System.out.println("Inside MemoryThresholdAlert");
         Connection cpu_con = null;
         PreparedStatement preparedStatement2 = null;
+        Timestamp logtime = new Timestamp(new java.util.Date().getTime());
         try {
             cpu_con = Datasource55.getConnection();
             preparedStatement2 = cpu_con.prepareStatement("INSERT INTO memory_threshold_history(NODE_IP,MEMORY_STATUS,MEMORY_THRESHOLD,MEMORY_UTILIZATION,EVENT_TIMESTAMP) VALUES (?,?,?,?,?)");
@@ -656,7 +661,7 @@ public class DeviceHealthMonitoring implements Runnable {
             preparedStatement2.setString(2, memory_status);
             preparedStatement2.setString(3, memory_percentage);
             preparedStatement2.setString(4, memory_val);
-            preparedStatement2.setTimestamp(5, new Timestamp(new java.util.Date().getTime()));
+            preparedStatement2.setTimestamp(5, logtime);
             preparedStatement2.executeUpdate();
 
         } catch (Exception e) {
@@ -680,10 +685,13 @@ public class DeviceHealthMonitoring implements Runnable {
         PreparedStatement preparedStmt_cpualert = null;
         try {
             cpuAlert_con = Datasource55.getConnection();
-            preparedStmt_cpualert = cpuAlert_con.prepareStatement("UPDATE node_health_monitoring SET MEMORY_UTILIZATION=?,MEMORY_STATUS=? WHERE  NODE_IP=? ");
+            preparedStmt_cpualert = cpuAlert_con.prepareStatement("UPDATE node_health_monitoring SET MEMORY_UTILIZATION=?,MEMORY_STATUS=?,"
+                    + "MEMORY_UTILIZATION_Generated_Time=?,MEMORY_UTILIZATION_Cleared_Time=? WHERE  NODE_IP=? ");
             preparedStmt_cpualert.setString(1, memory_val);
             preparedStmt_cpualert.setString(2, memory_status);
-            preparedStmt_cpualert.setString(3, device_ip);
+            preparedStmt_cpualert.setTimestamp(3, memory_status.equalsIgnoreCase("High") ? logtime : null);
+            preparedStmt_cpualert.setTimestamp(4, memory_status.equalsIgnoreCase("Low") ? logtime : null);
+            preparedStmt_cpualert.setString(5, device_ip);
             preparedStmt_cpualert.executeUpdate();
         } catch (Exception e) {
             System.out.println("errorrrrrrrrrrrrrrrrrrrrrrrrrrrrr@@@@@@@@@" + e);
